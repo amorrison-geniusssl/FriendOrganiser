@@ -7,13 +7,13 @@ namespace FriendOrganiser.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class test : IMigrationMetadata
+    public sealed partial class neeeeeeeew : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(neeeeeeeew));
         
         string IMigrationMetadata.Id
         {
-            get { return "202209271244414_test"; }
+            get { return "202209271257029_neeeeeeeew"; }
         }
         
         string IMigrationMetadata.Source

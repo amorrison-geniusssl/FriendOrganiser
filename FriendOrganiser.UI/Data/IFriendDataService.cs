@@ -1,10 +1,11 @@
 ﻿using FriendOrganiser.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FriendOrganiser.UI.Data
 {
     public interface IFriendDataService
     {
-        IEnumerable<Friend> GetAll();
+        Task<List<Friend>> GetAllAsync();
     }
 }

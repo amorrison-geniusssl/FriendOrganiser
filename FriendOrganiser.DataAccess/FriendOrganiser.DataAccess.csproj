@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FriendOrganiserDbContext.cs" />
-    <Compile Include="Migrations\202209271244414_test.cs" />
-    <Compile Include="Migrations\202209271244414_test.designer.cs">
-      <DependentUpon>202209271244414_test.cs</DependentUpon>
+    <Compile Include="Migrations\202209271257029_neeeeeeeew.cs" />
+    <Compile Include="Migrations\202209271257029_neeeeeeeew.designer.cs">
+      <DependentUpon>202209271257029_neeeeeeeew.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209271244414_test.resx">
-      <DependentUpon>202209271244414_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202209271257029_neeeeeeeew.resx">
+      <DependentUpon>202209271257029_neeeeeeeew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
