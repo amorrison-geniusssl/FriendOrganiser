@@ -43,5 +43,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FriendOrganiser.Model\FriendOrganiser.Model.csproj">
+      <Project>{1f629734-aa84-4788-9a36-63fcf21d8803}</Project>
+      <Name>FriendOrganiser.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
