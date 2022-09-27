@@ -52,9 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FriendOrganiserDbContext.cs" />
-    <Compile Include="Migrations\202209271111512_test.cs" />
-    <Compile Include="Migrations\202209271111512_test.designer.cs">
-      <DependentUpon>202209271111512_test.cs</DependentUpon>
+    <Compile Include="Migrations\202209271018535_InitialDatabase.cs" />
+    <Compile Include="Migrations\202209271018535_InitialDatabase.designer.cs">
+      <DependentUpon>202209271018535_InitialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209271040558_InitialDatabase1.cs" />
+    <Compile Include="Migrations\202209271040558_InitialDatabase1.designer.cs">
+      <DependentUpon>202209271040558_InitialDatabase1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,8 +74,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209271111512_test.resx">
-      <DependentUpon>202209271111512_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202209271018535_InitialDatabase.resx">
+      <DependentUpon>202209271018535_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209271040558_InitialDatabase1.resx">
+      <DependentUpon>202209271040558_InitialDatabase1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
