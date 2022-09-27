@@ -10,17 +10,16 @@ namespace FriendOrganiser.UI
     public partial class MainWindow : Window
     {
         private MainViewModel _viewModel;
-        public MainWindow(MainViewModel viewModel)
+        public MainWindow(INavigationViewModel navigationViewModel)
         {
-            InitializeComponent();
-            _viewModel = viewModel;
-            DataContext = _viewModel;
-            Loaded += MainWindow_Loaded;
+            NavigationViewModel = navigationViewModel;
         }
 
-        private async void  MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            await _viewModel.LoadAsync();
+            await NavigationViewModel.LoadAsync();
         }
+
+        public INavigationViewModel NavigationViewModel { get;}
     }
 }
