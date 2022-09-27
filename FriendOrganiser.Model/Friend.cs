@@ -1,7 +1,10 @@
-﻿namespace FriendOrganiser.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FriendOrganiser.Model
 {
     public class Friend
     {
+        [Key]
         public int Id { get; set; }
 
         public string FirstName { get; set; }
