@@ -3,14 +3,14 @@ using System.Data.Entity.Migrations;
 
 namespace FriendOrganiser.DataAccess.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<FriendOrganiser.DataAccess.FriendOrganiserDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FriendOrganiserDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(FriendOrganiser.DataAccess.FriendOrganiserDbContext context)
+        protected override void Seed(FriendOrganiserDbContext context)
         {
             context.Friends.AddOrUpdate(
                 f => f.FirstName,
