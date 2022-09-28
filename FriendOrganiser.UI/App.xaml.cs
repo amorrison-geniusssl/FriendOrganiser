@@ -1,7 +1,5 @@
 ﻿using Autofac;
-using FriendOrganiser.UI.Data;
 using FriendOrganiser.UI.Startup;
-using FriendOrganiser.UI.ViewModel;
 using System;
 using System.Windows;
 

@@ -19,7 +19,7 @@ namespace FriendOrganiser.UI.Wrapper
 
         public Friend Model { get; }
 
-        public int Id {get {return Model.Id; } }
+        public int Id { get {return Model.Id; } }
 
         public string FirstName
         { 
@@ -28,6 +28,21 @@ namespace FriendOrganiser.UI.Wrapper
             {
                 Model.FirstName = value;
                 OnPropertyChanged();
+                ValidateProperty(nameof(FirstName));
+            }
+        }
+
+        private void ValidateProperty(string propertyName)
+        {
+            ClearErrors(propertyName);
+            switch(propertyName)
+            {
+                case nameof(FirstName):
+                    if (string.Equals(FirstName, "Robot", StringComparison.OrdinalIgnoreCase))
+                    {
+                        AddError(propertyName, "Robots are not valid friends");
+                    }
+                    break;
             }
         }
 
