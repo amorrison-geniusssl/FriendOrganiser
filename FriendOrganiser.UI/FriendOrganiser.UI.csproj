@@ -95,6 +95,8 @@
     </ApplicationDefinition>
     <Compile Include="Data\Lookups\IFriendLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupDataService.cs" />
+    <Compile Include="Data\Repositories\FriendRespository.cs" />
+    <Compile Include="Event\AfterFriendDeletedEvent.cs" />
     <Compile Include="Event\AfterFriendSavedEvent.cs" />
     <Compile Include="Event\OpenFriendDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
@@ -124,7 +126,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Repositories\FriendRepoistory.cs" />
     <Compile Include="Data\Repositories\IFriendRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
