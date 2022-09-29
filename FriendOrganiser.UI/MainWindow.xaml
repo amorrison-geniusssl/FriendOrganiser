@@ -7,12 +7,12 @@
         xmlns:view="clr-namespace:FriendOrganiser.UI.View"
         mc:Ignorable="d"
         Title="FriendOrganiser" Height="350" Width="525" FontSize="20">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="200"/>
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
-    <view:NavigationView DataContext="{Binding NavigationViewModel}"/>
-    <view:FriendDetailView Grid.Column="1" DataContext="{Binding FriendDetailViewModel}"/>
-  </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <view:NavigationView DataContext="{Binding NavigationViewModel}"/>
+        <view:FriendDetailView Grid.Column="1" DataContext="{Binding FriendDetailViewModel}"/>
+    </Grid>
 </Window>

@@ -1,25 +1,25 @@
 ﻿namespace FriendOrganiser.UI.ViewModel
 {
-  public class NavigationItemViewModel : ViewModelBase
-  {
-    private string _displayMember;
-
-    public NavigationItemViewModel(int id, string displayMember)
+    public class NavigationItemViewModel : ViewModelBase
     {
-      Id = id;
-      DisplayMember = displayMember;
-    }
+        private string _displayMember;
 
-    public int Id { get; }
+        public NavigationItemViewModel(int id, string displayMember)
+        {
+            Id = id;
+            DisplayMember = displayMember;
+        }
 
-    public string DisplayMember
-    {
-      get { return _displayMember; }
-      set
-      {
-        _displayMember = value;
-        OnPropertyChanged();
-      }
+        public int Id { get; }
+
+        public string DisplayMember
+        {
+            get { return _displayMember; }
+            set
+            {
+                _displayMember = value;
+                OnPropertyChanged();
+            }
+        }
     }
-  }
 }
