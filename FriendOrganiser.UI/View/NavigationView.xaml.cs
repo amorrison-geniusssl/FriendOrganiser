@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace FriendOrganiser.UI.View
 {
-  /// <summary>
-  /// Interaction logic for NavigationView.xaml
-  /// </summary>
-  public partial class NavigationView : UserControl
-  {
-    public NavigationView()
+    /// <summary>
+    /// Interaction logic for NavigationView.xaml
+    /// </summary>
+    public partial class NavigationView : UserControl
     {
-      InitializeComponent();
+        public NavigationView()
+        {
+            InitializeComponent();
+        }
     }
-  }
 }

@@ -9,117 +9,144 @@ using Prism.Commands;
 using FriendOrganiser.UI.Wrapper;
 using FriendOrganiser.UI.Data.Repositories;
 using FriendOrganiser.UI.View.Services;
+using FriendOrganiser.UI.Data.Lookups;
+using System.Collections.ObjectModel;
 
 namespace FriendOrganiser.UI.ViewModel
 {
-  public class FriendDetailViewModel : ViewModelBase, IFriendDetailViewModel
-  {
-    private IFriendRepository _friendRepository;
-    private IEventAggregator _eventAggregator;
-    private FriendWrapper _friend;
-    private bool _hasChanges;
-    private IMessageDialogService _messageDialogService;
-
-    public FriendDetailViewModel(IFriendRepository friendRepository,
-      IEventAggregator eventAggregator,
-      IMessageDialogService messageDialogService)
+    public class FriendDetailViewModel : ViewModelBase, IFriendDetailViewModel
     {
-      _friendRepository = friendRepository;
-      _eventAggregator = eventAggregator;
-      _messageDialogService = messageDialogService;
+        private IFriendRepository _friendRepository;
+        private IEventAggregator _eventAggregator;
+        private FriendWrapper _friend;
+        private bool _hasChanges;
+        private IMessageDialogService _messageDialogService;
+        private IProgrammingLanguageLookupDataService _programmingLanguageLookupDataService;
 
-      SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
-      DeleteCommand = new DelegateCommand(OnDeleteExecute);
-    }
-
-    public async Task LoadAsync(int? friendId)
-    {
-      var friend = friendId.HasValue
-        ? await _friendRepository.GetByIdAsync(friendId.Value)
-        : CreateNewFriend();
-
-      Friend = new FriendWrapper(friend);
-      Friend.PropertyChanged += (s, e) =>
+        public FriendDetailViewModel(IFriendRepository friendRepository,
+          IEventAggregator eventAggregator,
+          IMessageDialogService messageDialogService,
+          IProgrammingLanguageLookupDataService programmingLanguageLookupDataService)
         {
-          if(!HasChanges)
-          {
-            HasChanges = _friendRepository.HasChanges();
-          }
-          if (e.PropertyName == nameof(Friend.HasErrors))
-          {
-            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-          }
-        };
-      ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-      if(Friend.Id==0)
-      {
-        // Little trick to trigger the validation
-        Friend.FirstName = "";
-      }
-    }
+            _friendRepository = friendRepository;
+            _eventAggregator = eventAggregator;
+            _messageDialogService = messageDialogService;
+            _programmingLanguageLookupDataService = programmingLanguageLookupDataService;
 
-    public FriendWrapper Friend
-    {
-      get { return _friend; }
-      private set
-      {
-        _friend = value;
-        OnPropertyChanged();
-      }
-    }
+            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            DeleteCommand = new DelegateCommand(OnDeleteExecute);
 
-    public bool HasChanges
-    {
-      get { return _hasChanges; }
-      set
-      {
-        if (_hasChanges != value)
-        {
-          _hasChanges = value;
-          OnPropertyChanged();
-          ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            ProgrammingLanguages = new ObservableCollection<LookupItem>();
         }
-      }
-    }
 
-    public ICommand SaveCommand { get; }
-
-    public ICommand DeleteCommand { get; }
-
-    private async void OnSaveExecute()
-    {
-      await _friendRepository.SaveAsync();
-      HasChanges = _friendRepository.HasChanges();
-      _eventAggregator.GetEvent<AfterFriendSavedEvent>().Publish(
-        new AfterFriendSavedEventArgs
+        public async Task LoadAsync(int? friendId)
         {
-          Id = Friend.Id,
-          DisplayMember = $"{Friend.FirstName} {Friend.LastName}"
-        });
-    }
+            var friend = friendId.HasValue
+              ? await _friendRepository.GetByIdAsync(friendId.Value)
+              : CreateNewFriend();
 
-    private bool OnSaveCanExecute()
-    {
-      return Friend != null && !Friend.HasErrors && HasChanges;
-    }
+            IntializeFriend(friend);
 
-    private async void OnDeleteExecute()
-    {
-      var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete the friend {Friend.FirstName} {Friend.LastName}?",
-        "Question");
-      if (result == MessageDialogResult.OK)
-      {
-        _friendRepository.Remove(Friend.Model);
-        await _friendRepository.SaveAsync();
-        _eventAggregator.GetEvent<AfterFriendDeletedEvent>().Publish(Friend.Id);
-      }
-    }
+            await LoadProgrammingLanguagesLookupAsync();
+        }
 
-    private Friend CreateNewFriend()
-    {
-      var friend = new Friend();
-      _friendRepository.Add(friend);
-      return friend;
+        private void IntializeFriend(Friend friend)
+        {
+            Friend = new FriendWrapper(friend);
+            Friend.PropertyChanged += (s, e) =>
+            {
+                if (!HasChanges)
+                {
+                    HasChanges = _friendRepository.HasChanges();
+                }
+                if (e.PropertyName == nameof(Friend.HasErrors))
+                {
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            };
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            if (Friend.Id == 0)
+            {
+                // Little trick to trigger the validation
+                Friend.FirstName = "";
+            }
+        }
+
+        private async Task LoadProgrammingLanguagesLookupAsync()
+        {
+            ProgrammingLanguages.Clear();
+            ProgrammingLanguages.Add(new NullLookupItem { DisplayMember = " - "});
+            var lookup = await _programmingLanguageLookupDataService.GetProgrammingLanguageLookupAsync();
+            foreach (var lookupItem in lookup)
+            {
+                ProgrammingLanguages.Add(lookupItem);
+            }
+        }
+
+        public FriendWrapper Friend
+        {
+            get { return _friend; }
+            private set
+            {
+                _friend = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool HasChanges
+        {
+            get { return _hasChanges; }
+            set
+            {
+                if (_hasChanges != value)
+                {
+                    _hasChanges = value;
+                    OnPropertyChanged();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        public ICommand SaveCommand { get; }
+
+        public ICommand DeleteCommand { get; }
+
+        public ObservableCollection<LookupItem> ProgrammingLanguages { get; }
+
+        private async void OnSaveExecute()
+        {
+            await _friendRepository.SaveAsync();
+            HasChanges = _friendRepository.HasChanges();
+            _eventAggregator.GetEvent<AfterFriendSavedEvent>().Publish(
+              new AfterFriendSavedEventArgs
+              {
+                  Id = Friend.Id,
+                  DisplayMember = $"{Friend.FirstName} {Friend.LastName}"
+              });
+        }
+
+        private bool OnSaveCanExecute()
+        {
+            return Friend != null && !Friend.HasErrors && HasChanges;
+        }
+
+        private async void OnDeleteExecute()
+        {
+            var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete the friend {Friend.FirstName} {Friend.LastName}?",
+              "Question");
+            if (result == MessageDialogResult.OK)
+            {
+                _friendRepository.Remove(Friend.Model);
+                await _friendRepository.SaveAsync();
+                _eventAggregator.GetEvent<AfterFriendDeletedEvent>().Publish(Friend.Id);
+            }
+        }
+
+        private Friend CreateNewFriend()
+        {
+            var friend = new Friend();
+            _friendRepository.Add(friend);
+            return friend;
+        }
     }
-  }
 }

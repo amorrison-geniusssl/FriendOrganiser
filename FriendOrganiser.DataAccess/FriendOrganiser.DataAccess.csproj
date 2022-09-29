@@ -56,6 +56,14 @@
     <Compile Include="Migrations\202209271257029_neeeeeeeew.designer.cs">
       <DependentUpon>202209271257029_neeeeeeeew.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209291510211_AddedProgrammingLanguage.cs" />
+    <Compile Include="Migrations\202209291510211_AddedProgrammingLanguage.designer.cs">
+      <DependentUpon>202209291510211_AddedProgrammingLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209291537182_AlteredSpelling.cs" />
+    <Compile Include="Migrations\202209291537182_AlteredSpelling.designer.cs">
+      <DependentUpon>202209291537182_AlteredSpelling.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,6 +80,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202209271257029_neeeeeeeew.resx">
       <DependentUpon>202209271257029_neeeeeeeew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209291510211_AddedProgrammingLanguage.resx">
+      <DependentUpon>202209291510211_AddedProgrammingLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209291537182_AlteredSpelling.resx">
+      <DependentUpon>202209291537182_AlteredSpelling.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
