@@ -1,5 +1,6 @@
 ﻿using FriendOrganiser.Model;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace FriendOrganiser.DataAccess
@@ -13,7 +14,9 @@ namespace FriendOrganiser.DataAccess
 
         public DbSet<Friend> Friends { get; set; }
 
-        public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set;}
+        public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+
+        public DbSet<FriendPhoneNumber> FriendPhoneNumbers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

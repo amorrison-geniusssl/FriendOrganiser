@@ -64,6 +64,26 @@
     <Compile Include="Migrations\202209291537182_AlteredSpelling.designer.cs">
       <DependentUpon>202209291537182_AlteredSpelling.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209291555368_AddedFriendPhoneNumbers.cs" />
+    <Compile Include="Migrations\202209291555368_AddedFriendPhoneNumbers.designer.cs">
+      <DependentUpon>202209291555368_AddedFriendPhoneNumbers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209300811544_AddedFriendPhoneNumbers1.cs" />
+    <Compile Include="Migrations\202209300811544_AddedFriendPhoneNumbers1.designer.cs">
+      <DependentUpon>202209300811544_AddedFriendPhoneNumbers1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209300813394_AddedFriendPhoneNumbers2.cs" />
+    <Compile Include="Migrations\202209300813394_AddedFriendPhoneNumbers2.designer.cs">
+      <DependentUpon>202209300813394_AddedFriendPhoneNumbers2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209300846236_updatefriend.cs" />
+    <Compile Include="Migrations\202209300846236_updatefriend.designer.cs">
+      <DependentUpon>202209300846236_updatefriend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209300851018_pleasework.cs" />
+    <Compile Include="Migrations\202209300851018_pleasework.designer.cs">
+      <DependentUpon>202209300851018_pleasework.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +106,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209291537182_AlteredSpelling.resx">
       <DependentUpon>202209291537182_AlteredSpelling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209291555368_AddedFriendPhoneNumbers.resx">
+      <DependentUpon>202209291555368_AddedFriendPhoneNumbers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209300811544_AddedFriendPhoneNumbers1.resx">
+      <DependentUpon>202209300811544_AddedFriendPhoneNumbers1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209300813394_AddedFriendPhoneNumbers2.resx">
+      <DependentUpon>202209300813394_AddedFriendPhoneNumbers2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209300846236_updatefriend.resx">
+      <DependentUpon>202209300846236_updatefriend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209300851018_pleasework.resx">
+      <DependentUpon>202209300851018_pleasework.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
