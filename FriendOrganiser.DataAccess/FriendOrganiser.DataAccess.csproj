@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202209300851018_pleasework.designer.cs">
       <DependentUpon>202209300851018_pleasework.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209301158304_meetings.cs" />
+    <Compile Include="Migrations\202209301158304_meetings.designer.cs">
+      <DependentUpon>202209301158304_meetings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209300851018_pleasework.resx">
       <DependentUpon>202209300851018_pleasework.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209301158304_meetings.resx">
+      <DependentUpon>202209301158304_meetings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
