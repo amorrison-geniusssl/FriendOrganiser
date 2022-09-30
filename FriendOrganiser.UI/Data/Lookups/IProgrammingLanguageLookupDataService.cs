@@ -4,8 +4,8 @@ using FriendOrganiser.Model;
 
 namespace FriendOrganiser.UI.Data.Lookups
 {
-  public interface IProgrammingLanguageLookupDataService
-  {
-    Task<IEnumerable<LookupItem>> GetProgrammingLanguageLookupAsync();
-  }
+    public interface IProgrammingLanguageLookupDataService
+    {
+        Task<IEnumerable<LookupItem>> GetProgrammingLanguageLookupAsync();
+    }
 }

@@ -8,45 +8,45 @@ using System.Threading.Tasks;
 
 namespace FriendOrganiser.UI.Data.Repositories
 {
-  public class FriendRespository : IFriendRepository
-  {
-    private FriendOrganiserDbContext _context;
-
-    public FriendRespository(FriendOrganiserDbContext context)
+    public class FriendRespository : IFriendRepository
     {
-      _context = context;
-    }
+        private FriendOrganiserDbContext _context;
 
-    public void Add(Friend friend)
-    {
-      _context.Friends.Add(friend);
-    }
+        public FriendRespository(FriendOrganiserDbContext context)
+        {
+            _context = context;
+        }
 
-    public async Task<Friend> GetByIdAsync(int friendId)
-    {
-      return await _context.Friends
-        .Include(f => f.PhoneNumbers)
-        .SingleAsync(f => f.Id == friendId);
-    }
+        public void Add(Friend friend)
+        {
+            _context.Friends.Add(friend);
+        }
 
-    public bool HasChanges()
-    {
-      return _context.ChangeTracker.HasChanges();
-    }
+        public async Task<Friend> GetByIdAsync(int friendId)
+        {
+            return await _context.Friends
+              .Include(f => f.PhoneNumbers)
+              .SingleAsync(f => f.Id == friendId);
+        }
 
-    public void Remove(Friend model)
-    {
-      _context.Friends.Remove(model);
-    }
+        public bool HasChanges()
+        {
+            return _context.ChangeTracker.HasChanges();
+        }
 
-    public void RemovePhoneNumber(FriendPhoneNumber model)
-    {
-      _context.FriendPhoneNumbers.Remove(model);
-    }
+        public void Remove(Friend model)
+        {
+            _context.Friends.Remove(model);
+        }
 
-    public async Task SaveAsync()
-    {
-      await _context.SaveChangesAsync();
+        public void RemovePhoneNumber(FriendPhoneNumber model)
+        {
+            _context.FriendPhoneNumbers.Remove(model);
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
-  }
 }
