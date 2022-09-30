@@ -1,19 +1,29 @@
-﻿using FriendOrganiser.DataAccess;
+﻿using System.Threading.Tasks;
+using FriendOrganiser.DataAccess;
 using FriendOrganiser.Model;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace FriendOrganiser.UI.Data.Repositories
 {
-    public class MeetingRepository : GenericRepository<Meeting, FriendOrganiserDbContext>, IMeetingRepository
+  public class MeetingRepository : GenericRepository<Meeting, FriendOrganiserDbContext>, 
+    IMeetingRepository
+  {
+    public MeetingRepository(FriendOrganiserDbContext context) : base(context)
     {
-        public MeetingRepository(FriendOrganiserDbContext context) : base(context)
-        {
-        }
-
-        public override async Task<Meeting> GetByIdAsync(int id)
-        {
-            return await Context.Meetings.Include(m => m.Friends).SingleAsync(m => m.Id == id);
-        }
     }
+
+    public async override Task<Meeting> GetByIdAsync(int id)
+    {
+      return await Context.Meetings
+        .Include(m => m.Friends)
+        .SingleAsync(m => m.Id == id);
+    }
+
+    public async Task<List<Friend>> GetAllFriendsAsync()
+    {
+      return await Context.Set<Friend>()
+          .ToListAsync();
+    }
+  }
 }
