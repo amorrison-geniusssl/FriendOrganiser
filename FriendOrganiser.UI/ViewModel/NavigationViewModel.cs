@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using FriendOrganiser.UI.Data.Lookups;
+using FriendOrganiser.UI.ViewModel;
 
 namespace FriendOrganiser.UI.ViewModel
 {
