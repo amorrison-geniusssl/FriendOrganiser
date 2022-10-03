@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,24 +9,36 @@ using System.Windows;
 
 namespace FriendOrganiser.UI.View.Services
 {
-  public class MessageDialogService : IMessageDialogService
-  {
-    public MessageDialogResult ShowOkCancelDialog(string text,string title)
+    public class MessageDialogService : IMessageDialogService
     {
-      var result = MessageBox.Show(text, title, MessageBoxButton.OKCancel);
-      return result == MessageBoxResult.OK
-        ? MessageDialogResult.OK
-        : MessageDialogResult.Cancel;
-    }
-    public void ShowInfoDialog(string text)
-    {
-      MessageBox.Show(text, "Info");
-    }
+        private MetroWindow MetroWindow => (MetroWindow)App.Current.MainWindow;
+        public async Task<MessageDialogResult> ShowOkCancelDialogAsync(string text, string title)
+        {
+            var result =
+              await MetroWindow.ShowMessageAsync(title, text, MessageDialogStyle.AffirmativeAndNegative);
 
-  }
-  public enum MessageDialogResult
-  {
-    OK,
-    Cancel
-  }
+            return result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative
+              ? MessageDialogResult.OK
+              : MessageDialogResult.Cancel;
+        }
+        public async Task ShowInfoDialogAsync(string text)
+        {
+            await MetroWindow.ShowMessageAsync("Info", text);
+        }
+
+        public MessageDialogResult ShowOkCancelDialog(string text, string title)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowInfoDialog(string text)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public enum MessageDialogResult
+    {
+        OK,
+        Cancel
+    }
 }
